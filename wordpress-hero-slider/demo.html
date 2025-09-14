@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Slider Demo - Wedding Cake Gallery</title>
+    
+    <!-- Hero Slider Styles -->
+    <link rel="stylesheet" href="css/hero-slider.css">
+    
+    <!-- jQuery for enhanced functionality - using local fallback -->
+    <script>
+        // jQuery minimal fallback for the slider
+        if (typeof jQuery === 'undefined') {
+            window.$ = window.jQuery = function(selector) {
+                if (typeof selector === 'function') {
+                    if (document.readyState === 'loading') {
+                        document.addEventListener('DOMContentLoaded', selector);
+                    } else {
+                        selector();
+                    }
+                    return;
+                }
+                // Basic selector support
+                const elements = document.querySelectorAll(selector);
+                return {
+                    each: function(fn) {
+                        elements.forEach((el, index) => fn.call(el, index, el));
+                        return this;
+                    },
+                    on: function(event, fn) {
+                        elements.forEach(el => el.addEventListener(event, fn));
+                        return this;
+                    },
+                    data: function(key) {
+                        return elements[0] ? elements[0].dataset[key] : null;
+                    },
+                    addClass: function(className) {
+                        elements.forEach(el => el.classList.add(className));
+                        return this;
+                    },
+                    removeClass: function(className) {
+                        elements.forEach(el => el.classList.remove(className));
+                        return this;
+                    },
+                    length: elements.length
+                };
+            };
+            // Add extend method
+            $.extend = function(target, source) {
+                return Object.assign(target || {}, source);
+            };
+        }
+    </script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .demo-content {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .demo-content h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .demo-content p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Demo background images using gradients */
+        .demo-bg-1 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .demo-bg-2 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .demo-bg-3 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        /* Demo featured images placeholder */
+        .demo-featured-img {
+            width: 300px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Slider Section -->
+    <section id="hero-slider" class="hero-slider-container" data-options='{"autoplay": true, "autoplay_delay": 6000, "overlay_opacity": 0.4}'>
+        <div class="hero-slider-wrapper">
+            <div class="hero-slides">
+                
+                <!-- Slide 1 -->
+                <div class="hero-slide active demo-bg-1">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="container">
+                            <div class="slide-text">
+                                <h1 class="slide-title">Exquisite Wedding Cakes</h1>
+                                <h2 class="slide-subtitle">Creating Sweet Memories</h2>
+                                <p class="slide-description">Handcrafted with love and attention to detail, our wedding cakes are the perfect centerpiece for your special day. Each design is uniquely tailored to reflect your personal style and taste.</p>
+                                <div class="slide-buttons">
+                                    <a href="#gallery" class="btn btn-primary slide-btn">View Our Gallery</a>
+                                </div>
+                            </div>
+                            <div class="slide-image">
+                                <div class="demo-featured-img featured-img">
+                                    Wedding Cake<br>Featured Image
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="hero-slide demo-bg-2">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="container">
+                            <div class="slide-text">
+                                <h1 class="slide-title">Custom Designs</h1>
+                                <h2 class="slide-subtitle">Your Dream Cake Awaits</h2>
+                                <p class="slide-description">From elegant tiered cakes to modern artistic designs, we bring your vision to life with premium ingredients and masterful craftsmanship. Every detail is meticulously planned and executed.</p>
+                                <div class="slide-buttons">
+                                    <a href="#contact" class="btn btn-primary slide-btn">Get Quote</a>
+                                </div>
+                            </div>
+                            <div class="slide-image">
+                                <div class="demo-featured-img featured-img">
+                                    Custom Design<br>Featured Image
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 -->
+                <div class="hero-slide demo-bg-3">
+                    <div class="slide-overlay"></div>
+                    <div class="slide-content">
+                        <div class="container">
+                            <div class="slide-text">
+                                <h1 class="slide-title">Premium Quality</h1>
+                                <h2 class="slide-subtitle">Taste the Difference</h2>
+                                <p class="slide-description">Using only the finest ingredients and traditional techniques to create unforgettable flavors. Our commitment to excellence ensures every bite is a moment of pure indulgence.</p>
+                                <div class="slide-buttons">
+                                    <a href="#order" class="btn btn-primary slide-btn">Order Now</a>
+                                </div>
+                            </div>
+                            <div class="slide-image">
+                                <div class="demo-featured-img featured-img">
+                                    Premium Quality<br>Featured Image
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Navigation arrows -->
+            <div class="slider-navigation">
+                <button class="nav-arrow prev-arrow" aria-label="Previous slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="nav-arrow next-arrow" aria-label="Next slide">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Pagination dots -->
+            <div class="slider-pagination">
+                <button class="pagination-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+                <button class="pagination-dot" data-slide="1" aria-label="Go to slide 2"></button>
+                <button class="pagination-dot" data-slide="2" aria-label="Go to slide 3"></button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Demo content below slider -->
+    <div class="demo-content">
+        <h2>Mobile-Friendly Hero Slider</h2>
+        <p>This hero slider is fully responsive and optimized for all devices. It includes touch/swipe support for mobile devices, keyboard navigation, and accessibility features. The slider automatically adapts to different screen sizes and provides an optimal viewing experience on desktop, tablet, and mobile devices.</p>
+        
+        <h3>Features:</h3>
+        <ul style="text-align: left; display: inline-block;">
+            <li>✅ Fully responsive design (mobile-first approach)</li>
+            <li>✅ Touch/swipe gestures for mobile devices</li>
+            <li>✅ Keyboard navigation support</li>
+            <li>✅ Auto-play functionality with pause on hover</li>
+            <li>✅ Smooth transitions and animations</li>
+            <li>✅ Accessibility (ARIA attributes, screen reader support)</li>
+            <li>✅ SEO-friendly structure</li>
+            <li>✅ WordPress integration ready</li>
+            <li>✅ Customizable options and styling</li>
+            <li>✅ Cross-browser compatibility</li>
+        </ul>
+    </div>
+    
+    <!-- Hero Slider JavaScript -->
+    <script src="js/hero-slider.js"></script>
+    
+    <script>
+        // Additional demo functionality
+        $(document).ready(function() {
+            // Example of binding to slider events
+            $('#hero-slider').on('slideChange', function(event, slideIndex, slideElement) {
+                console.log('Slide changed to:', slideIndex);
+            });
+            
+            // Example of programmatic control
+            /*
+            setTimeout(function() {
+                const slider = $('#hero-slider').data('heroSlider');
+                if (slider) {
+                    slider.goToSlide(1);
+                }
+            }, 10000);
+            */
+        });
+    </script>
+</body>
+</html>
